@@ -1,0 +1,66 @@
+//  We create an initial CSS variable that holds the current
+//  breakpoint information.
+//  ----------------------------------------------------------------------
+
+    :root {
+        --current-breakpoint: 'Nothing yet';
+    }
+
+
+
+//  We insert that in a pseudo `:before` element and display it with the
+//  `content` property.
+//  ----------------------------------------------------------------------
+
+    html:before {
+        content: var(--current-breakpoint);
+    }
+
+
+
+//  Let's say you have some breakpoints, these are borrowed from
+//  Bootstrap as an example
+//  ----------------------------------------------------------------------
+
+    $breakpoints: (
+        xs: 0,
+        sm: 36rem,
+        md: 48rem,
+        lg: 62rem,
+        xl: 75rem
+    );
+
+
+
+//  For every breakpoint we can update the variable with the current
+//  information. In this case, what name and value we've given it.
+//  ----------------------------------------------------------------------
+
+    @each $bpName, $bpValue in $breakpoints {
+        @media (min-width: $bpValue) {
+            :root {
+                --current-breakpoint: '#{$bpName} #{$bpValue} \21A6';
+            }
+        }
+    }
+
+
+
+//  This is only for demo purposes so we can see it easier.
+//  ----------------------------------------------------------------------
+
+    html:before {
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 2px;
+        color: #fff;
+        font-family: system-ui;
+        display: block;
+        padding: 0.25em 0.5em;
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+
+        -webkit-transform: translate(-50%);
+                transform: translate(-50%);
+    }

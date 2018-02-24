@@ -1,0 +1,66 @@
+/*  We create an initial CSS variable that holds the current
+/*  breakpoint information.
+/*  ------------------------------------------------------------------  */
+
+    :root {
+        --current-breakpoint: 'xs: 0 \21A6';
+    }
+
+
+
+/*  We insert that in a pseudo `:before` element and display it with the
+/*  `content` property.
+/*  ------------------------------------------------------------------  */
+
+    html:before {
+        content: var(--current-breakpoint);
+    }
+
+
+
+/*  For every breakpoint we can update the variable with the current
+/*  information. In this case, what name and value we've given it.
+/*  These are borrowed from Bootstrap as examples.
+/*  ------------------------------------------------------------------  */
+
+    @media (min-width: 36rem) {
+        :root {
+            --current-breakpoint: 'sm: 36rem \21A6';
+        }
+    }
+    @media (min-width: 48rem) {
+        :root {
+            --current-breakpoint: 'md: 48rem \21A6';
+        }
+    }
+    @media (min-width: 62rem) {
+        :root {
+            --current-breakpoint: 'lg: 62rem \21A6';
+        }
+    }
+    @media (min-width: 75rem) {
+        :root {
+            --current-breakpoint: 'xl: 75rem \21A6';
+        }
+    }
+
+
+
+/*  This is only for demo purposes so we can see it easier.
+/*  ------------------------------------------------------------------  */
+
+    html:before {
+        background-color: rgba(0, 0, 0, 0.6);
+        border-radius: 2px;
+        color: #fff;
+        font-family: system-ui;
+        display: block;
+        padding: 0.25em 0.5em;
+
+        position: fixed;
+        top: 50%;
+        left: 50%;
+
+        -webkit-transform: translate(-50%);
+                transform: translate(-50%);
+    }
